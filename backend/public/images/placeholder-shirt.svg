@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Imagem de camisa">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f1f1f"/>
+      <stop offset="100%" stop-color="#0d0d0d"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" rx="24" fill="url(#g)" />
+  <path d="M120 90c22-16 53-22 80-22s58 6 80 22l30-12 30 42-38 32v210c0 22-18 40-40 40H138c-22 0-40-18-40-40V152l-38-32 30-42z" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".12" stroke-width="6"/>
+  <path d="M200 120c30 0 54 24 54 54s-24 54-54 54-54-24-54-54 24-54 54-54zm0 28c-14 0-26 12-26 26s12 26 26 26 26-12 26-26-12-26-26-26z" fill="#d1d5db"/>
+  <text x="200" y="390" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">Camisa</text>
+</svg>

@@ -22,7 +22,10 @@
     </div>
 
     <div id="toast-container" class="fixed top-3 right-3 space-y-2 z-40"></div>
-    <script>
+    <a href="https://wa.me/5511988887777?text=Oi%2C%20gostaria%20de%20saber%20mais%20sobre%20as%20camisas" target="_blank" rel="noreferrer" class="fixed bottom-4 right-4 z-40 bg-[#25D366] text-white rounded-full shadow-lg w-14 h-14 flex items-center justify-center hover:brightness-110 transition">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+    <script>    
         (function() {
             const container = document.getElementById('toast-container');
             const messages = [];

@@ -2,7 +2,7 @@
 <article class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
     <a href="{{ url('/produtos/' . $produto->slug) }}" class="block">
         <div class="relative">
-            <img src="{{ $produto->images->first()?->url ?? 'https://via.placeholder.com/600x600?text=Camisa' }}" alt="Imagem de {{ $produto->nome }}" class="w-full aspect-[4/5] object-cover">
+            <img src="{{ $produto->images->first()?->url ?? asset('images/placeholder-shirt.svg') }}" alt="Imagem de {{ $produto->nome }}" class="w-full aspect-[4/5] object-cover">
             @if($produto->preco_promocional)
                 <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Oferta</span>
             @endif

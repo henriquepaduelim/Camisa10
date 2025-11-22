@@ -1,4 +1,24 @@
 <header class="bg-white shadow-sm sticky top-0 z-30">
+    <div class="bg-[var(--cor-primaria-escura)] text-white text-xs sm:text-sm">
+        <div class="w-full px-4 sm:px-6 py-2 overflow-hidden">
+            <div class="animate-marquee whitespace-nowrap">
+                <div class="marquee-track">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-truck-fast"></i> Frete grátis acima de R$ 299</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-bolt"></i> Promoções relâmpago toda semana</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-clock"></i> Envio em até 2 dias úteis</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Pagamento 100% seguro</span>
+                    <span class="marquee-spacer" aria-hidden="true"></span>
+                </div>
+                <div aria-hidden="true" class="marquee-track">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-truck-fast"></i> Frete grátis acima de R$ 299</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-bolt"></i> Promoções relâmpago toda semana</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-clock"></i> Envio em até 2 dias úteis</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Pagamento 100% seguro</span>
+                    <span class="marquee-spacer" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
             <a href="/" class="flex items-center gap-2 text-brand font-bold text-lg">
                 <i class="fa-solid fa-futbol text-xl"></i>

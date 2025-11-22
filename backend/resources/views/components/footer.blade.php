@@ -10,10 +10,10 @@
         <div>
             <h4 class="font-semibold mb-3 text-sm uppercase tracking-wide text-slate-100">Institucional</h4>
             <ul class="space-y-2 text-sm text-slate-200">
-                <li><a class="hover:text-white" href="#">FAQ</a></li>
-                <li><a class="hover:text-white" href="#">Contato</a></li>
-                <li><a class="hover:text-white" href="#">Termos de uso</a></li>
-                <li><a class="hover:text-white" href="#">Política de privacidade</a></li>
+                <li><a class="hover:text-white" href="{{ url('/faq') }}">FAQ</a></li>
+                <li><a class="hover:text-white" href="{{ url('/contato') }}">Contato</a></li>
+                <li><a class="hover:text-white" href="{{ url('/termos') }}">Termos de uso</a></li>
+                <li><a class="hover:text-white" href="{{ url('/privacidade') }}">Política de privacidade</a></li>
                 <li><a class="hover:text-white" href="{{ url('/admin/login') }}">Área do lojista</a></li>
             </ul>
         </div>

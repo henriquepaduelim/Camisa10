@@ -7,12 +7,14 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-4">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                <img src="{{ $produto->images->first()?->url ?? 'https://via.placeholder.com/900x900?text=Camisa' }}" alt="{{ $produto->nome }}" class="w-full object-cover">
+                <img src="{{ $produto->images->first()?->url ?? asset('images/placeholder-shirt.svg') }}" alt="{{ $produto->nome }}" class="w-full object-cover">
             </div>
             <div class="grid grid-cols-4 gap-2">
-                @foreach($produto->images as $imagem)
+                @forelse($produto->images as $imagem)
                     <img src="{{ $imagem->url }}" alt="{{ $imagem->alt }}" class="rounded-xl border border-slate-100">
-                @endforeach
+                @empty
+                    <img src="{{ asset('images/placeholder-shirt.svg') }}" alt="Placeholder" class="rounded-xl border border-slate-100">
+                @endforelse
             </div>
         </div>
 

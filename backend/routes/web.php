@@ -45,6 +45,11 @@ Route::get('/carrinho', function (CartService $cartService) {
     return view('carrinho', compact('cart'));
 });
 
+Route::view('/faq', 'static.faq');
+Route::view('/contato', 'static.contato');
+Route::view('/termos', 'static.termos');
+Route::view('/privacidade', 'static.privacidade');
+
 Route::post('/carrinho/cupom', function (Request $request, CartService $cartService) {
     $data = $request->validate([
         'cupom' => 'required|string',
