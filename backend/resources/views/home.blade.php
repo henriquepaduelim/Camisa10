@@ -3,21 +3,21 @@
 @section('title', 'Loja mobile de camisas')
 
 @section('content')
-<section class="bg-gradient-to-br from-cyan-600 to-cyan-800 text-white">
+<section class="bg-gradient-to-br from-[var(--cor-primaria)] to-[var(--cor-primaria-escura)] text-white">
     <div class="max-w-6xl mx-auto px-4 py-10 sm:py-14 flex flex-col sm:flex-row gap-8 items-center">
         <div class="flex-1 space-y-4">
             <p class="text-sm uppercase tracking-wide text-cyan-200">Nova coleção</p>
             <h1 class="text-3xl sm:text-4xl font-bold leading-tight">Camisas oficiais e retrô, feitas para quem vive futebol 24/7.</h1>
-            <p class="text-cyan-100">Escolha seu clube ou seleção favorita, com entrega rápida e experiência otimizada para smartphones.</p>
+            <p class="text-amber-100">Escolha seu clube ou seleção favorita, com entrega rápida e experiência otimizada para smartphones.</p>
             <div class="flex flex-col sm:flex-row gap-3">
-                <a href="/produtos" class="inline-flex items-center justify-center gap-2 bg-white text-cyan-800 font-semibold px-5 py-3 rounded-full hover:bg-slate-100 transition">
+                <a href="/produtos" class="btn btn-primary font-semibold px-5 py-3 rounded-full">
                     <i class="fa-solid fa-shirt"></i> Ver catálogo
                 </a>
-                <a href="/checkout" class="inline-flex items-center justify-center gap-2 border border-white/60 text-white font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition">
+                <a href="/checkout" class="btn btn-secondary inline-flex items-center justify-center gap-2 font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition border border-brand">
                     <i class="fa-solid fa-bolt"></i> Comprar agora
                 </a>
             </div>
-            <div class="flex items-center gap-4 text-sm text-cyan-100">
+            <div class="flex items-center gap-4 text-sm text-amber-100">
                 <span class="inline-flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Pagamento seguro</span>
                 <span class="inline-flex items-center gap-2"><i class="fa-solid fa-truck-fast"></i> Envio rápido</span>
             </div>

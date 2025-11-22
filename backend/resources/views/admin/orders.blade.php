@@ -23,7 +23,7 @@
                     <td class="py-2 text-xs font-semibold text-cyan-700">{{ ucfirst($p->status) }}</td>
                     <td class="py-2">R$ {{ number_format($p->total, 2, ',', '.') }}</td>
                     <td class="py-2">
-                        <form method="POST" action="{{ route('admin.pedidos.status', $p) }}" class="flex items-center gap-2">
+                        <form method="POST" action="{{ route('admin.pedidos.status', $p) }}" class="flex items-center gap-2" data-loading>
                             @csrf @method('PATCH')
                             <select name="status" class="input text-sm">
                                 @foreach(['pendente','pago','enviado','entregue','cancelado'] as $status)

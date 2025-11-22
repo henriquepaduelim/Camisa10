@@ -16,6 +16,7 @@ class Product extends Model
         'club_id',
         'league_id',
         'descricao',
+        'descricao_curta',
         'preco',
         'preco_promocional',
         'moeda',
@@ -24,6 +25,8 @@ class Product extends Model
         'mais_vendido',
         'lancamento',
         'sku',
+        'meta_title',
+        'meta_description',
         'tags',
         'estoque_total',
     ];

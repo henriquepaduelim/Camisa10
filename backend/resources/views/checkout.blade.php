@@ -9,36 +9,36 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="md:col-span-2 space-y-4">
             <div class="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
-                <h2 class="font-semibold text-lg flex items-center gap-2"><i class="fa-solid fa-user text-cyan-600"></i> Dados pessoais</h2>
+                <h2 class="font-semibold text-lg flex items-center gap-2 text-brand"><i class="fa-solid fa-user"></i> Dados pessoais</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Nome completo" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="E-mail" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Telefone" />
+                    <input class="field-brand" placeholder="Nome completo" />
+                    <input class="field-brand" placeholder="E-mail" />
+                    <input class="field-brand" placeholder="Telefone" />
                 </div>
             </div>
 
             <div class="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
-                <h2 class="font-semibold text-lg flex items-center gap-2"><i class="fa-solid fa-location-dot text-cyan-600"></i> Endereço de entrega</h2>
+                <h2 class="font-semibold text-lg flex items-center gap-2 text-brand"><i class="fa-solid fa-location-dot"></i> Endereço de entrega</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="CEP" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Rua" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Número" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Complemento" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Bairro" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Cidade" />
-                    <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="Estado" />
+                    <input class="field-brand" placeholder="CEP" />
+                    <input class="field-brand" placeholder="Rua" />
+                    <input class="field-brand" placeholder="Número" />
+                    <input class="field-brand" placeholder="Complemento" />
+                    <input class="field-brand" placeholder="Bairro" />
+                    <input class="field-brand" placeholder="Cidade" />
+                    <input class="field-brand" placeholder="Estado" />
                 </div>
             </div>
 
             <div class="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
-                <h2 class="font-semibold text-lg flex items-center gap-2"><i class="fa-solid fa-credit-card text-cyan-600"></i> Pagamento</h2>
+                <h2 class="font-semibold text-lg flex items-center gap-2 text-brand"><i class="fa-solid fa-credit-card"></i> Pagamento</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <label class="flex items-center gap-2 border rounded-xl px-3 py-2 cursor-pointer">
-                        <input type="radio" name="pagamento" class="accent-cyan-600" checked>
+                    <label class="flex items-center gap-2 border border-brand rounded-xl px-3 py-2 cursor-pointer">
+                        <input type="radio" name="pagamento" class="accent-[var(--cor-primaria)]" checked>
                         <span>Cartão (mock)</span>
                     </label>
-                    <label class="flex items-center gap-2 border rounded-xl px-3 py-2 cursor-pointer">
-                        <input type="radio" name="pagamento" class="accent-cyan-600">
+                    <label class="flex items-center gap-2 border border-brand rounded-xl px-3 py-2 cursor-pointer">
+                        <input type="radio" name="pagamento" class="accent-[var(--cor-primaria)]">
                         <span>PIX (mock)</span>
                     </label>
                 </div>
@@ -67,7 +67,7 @@
                 <span>Total</span>
                 <span>R$ {{ number_format($cart->total, 2, ',', '.') }}</span>
             </div>
-            <button class="w-full bg-cyan-600 text-white font-semibold px-4 py-3 rounded-full hover:bg-cyan-700 transition flex items-center justify-center gap-2">
+            <button class="w-full btn btn-primary font-semibold px-4 py-3 flex items-center justify-center gap-2">
                 <i class="fa-solid fa-shield-halved"></i> Confirmar pedido
             </button>
         </div>

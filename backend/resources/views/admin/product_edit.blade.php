@@ -67,6 +67,20 @@
             <label class="text-sm font-semibold">Descrição</label>
             <textarea class="input" name="descricao" rows="3">{{ old('descricao', $produto->descricao) }}</textarea>
         </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+                <label class="text-sm font-semibold">Descrição curta</label>
+                <input class="input" name="descricao_curta" value="{{ old('descricao_curta', $produto->descricao_curta) }}">
+            </div>
+            <div>
+                <label class="text-sm font-semibold">Meta title</label>
+                <input class="input" name="meta_title" value="{{ old('meta_title', $produto->meta_title) }}">
+            </div>
+        </div>
+        <div>
+            <label class="text-sm font-semibold">Meta description</label>
+            <textarea class="input" name="meta_description" rows="2">{{ old('meta_description', $produto->meta_description) }}</textarea>
+        </div>
         <div class="flex items-center gap-4 text-sm">
             <label class="flex items-center gap-2"><input type="checkbox" name="ativo" value="1" @checked($produto->ativo)> Ativo</label>
             <label class="flex items-center gap-2"><input type="checkbox" name="destaque" value="1" @checked($produto->destaque)> Destaque</label>
@@ -87,6 +101,10 @@
                         <input class="input" name="imagens_url[]" placeholder="URL da imagem">
                         <input class="input" name="imagens_alt[]" placeholder="ALT">
                     </div>
+                </div>
+                <div class="mt-3 space-y-2">
+                    <label class="text-sm font-semibold">Upload de imagens</label>
+                    <input type="file" name="imagens_upload[]" multiple class="text-sm">
                 </div>
                 <button type="button" onclick="addImagem()" class="mt-2 text-sm text-cyan-700 font-semibold">+ Adicionar linha</button>
             </div>

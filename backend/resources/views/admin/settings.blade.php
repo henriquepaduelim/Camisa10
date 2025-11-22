@@ -5,7 +5,7 @@
 @section('content')
 <div class="card p-4">
     <h2 class="font-semibold mb-3">Configurações da loja</h2>
-    <form method="POST" action="{{ route('admin.settings.update') }}" class="space-y-3">
+    <form method="POST" action="{{ route('admin.settings.update') }}" class="space-y-3" data-loading>
         @csrf
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>

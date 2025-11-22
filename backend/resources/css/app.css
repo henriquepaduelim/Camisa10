@@ -1,3 +1,4 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -8,15 +9,16 @@
 @theme {
     --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-brand: #06b6d4;
     --radius-md: 0.75rem;
     --radius-lg: 1.5rem;
 }
 
 :root {
-    --cor-primaria: #06b6d4;
-    --cor-secundaria: #0f172a;
-    --cor-fundo: #f8fafc;
+    --cor-primaria: #eb8a14; /* amber-earth 500 */
+    --cor-primaria-escura: #bc6f10; /* amber-earth 600 */
+    --cor-acento: #f55c0a; /* blaze-orange 500 */
+    --cor-secundaria: #311202; /* blaze-orange 900 */
+    --cor-fundo: #fdf3e8; /* amber-earth 50 */
 }
 
 .btn {
@@ -24,7 +26,31 @@
 }
 
 .btn-primary {
-    @apply bg-cyan-600 text-white hover:bg-cyan-700;
+    background-color: var(--cor-primaria);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(235, 138, 20, 0.2);
+}
+.btn-primary:hover { background-color: var(--cor-primaria-escura); }
+.btn-secondary {
+    background-color: transparent;
+    color: var(--cor-primaria-escura);
+    border: 1px solid var(--cor-primaria);
+    box-shadow: none;
+}
+
+.text-brand { color: var(--cor-primaria-escura); }
+.bg-brand { background-color: var(--cor-primaria); color: #fff; }
+.border-brand { border-color: var(--cor-primaria); }
+
+.field-brand {
+    @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm;
+    outline: none;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.field-brand:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 2px rgba(235, 138, 20, 0.25);
 }
 
 .toast {

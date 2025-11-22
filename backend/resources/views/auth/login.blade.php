@@ -14,20 +14,20 @@
         @csrf
         <div class="space-y-1">
             <label class="text-sm font-semibold text-slate-700" for="email">E-mail</label>
-            <input id="email" name="email" type="email" value="{{ old('email') }}" required class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+            <input id="email" name="email" type="email" value="{{ old('email') }}" required class="field-brand">
             @error('email') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
         </div>
         <div class="space-y-1">
             <label class="text-sm font-semibold text-slate-700" for="password">Senha</label>
-            <input id="password" name="password" type="password" required class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+            <input id="password" name="password" type="password" required class="field-brand">
             @error('password') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
         </div>
         <div class="flex items-center gap-2">
-            <input id="remember" name="remember" type="checkbox" class="accent-cyan-600">
+            <input id="remember" name="remember" type="checkbox" class="accent-[var(--cor-primaria)]">
             <label for="remember" class="text-sm text-slate-600">Lembrar-me</label>
         </div>
-        <button data-loading-text="Entrando..." class="w-full bg-cyan-600 text-white font-semibold px-4 py-3 rounded-full hover:bg-cyan-700 transition">Entrar</button>
-        <p class="text-sm text-center text-slate-600">Ainda não tem conta? <a href="/registrar" class="text-cyan-700 font-semibold">Criar conta</a></p>
+        <button data-loading-text="Entrando..." class="w-full btn btn-primary font-semibold px-4 py-3 rounded-full">Entrar</button>
+        <p class="text-sm text-center text-slate-600">Ainda não tem conta? <a href="/registrar" class="text-brand font-semibold">Criar conta</a></p>
     </form>
 </section>
 @endsection

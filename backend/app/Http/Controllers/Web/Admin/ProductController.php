@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -65,6 +66,9 @@ class ProductController extends Controller
             'preco' => 'required|numeric|min:0',
             'preco_promocional' => 'nullable|numeric|min:0',
             'descricao' => 'nullable|string',
+            'descricao_curta' => 'nullable|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
             'category_id' => 'nullable|exists:categories,id',
             'club_id' => 'nullable|exists:clubs,id',
             'league_id' => 'nullable|exists:leagues,id',
@@ -74,6 +78,8 @@ class ProductController extends Controller
             'imagens_url' => 'nullable|array',
             'imagens_url.*' => 'nullable|url',
             'imagens_alt' => 'nullable|array',
+            'imagens_upload' => 'nullable|array',
+            'imagens_upload.*' => 'file|image|max:2048',
             'tamanho_nome' => 'nullable|array',
             'tamanho_preco' => 'nullable|array',
             'tamanho_estoque' => 'nullable|array',
@@ -88,7 +94,8 @@ class ProductController extends Controller
         // Imagens
         $urls = $request->input('imagens_url', []);
         $alts = $request->input('imagens_alt', []);
-        if (!empty($urls)) {
+        $uploads = $request->file('imagens_upload', []);
+        if (!empty($urls) || !empty($uploads)) {
             $product->images()->delete();
             foreach ($urls as $idx => $url) {
                 if (!$url) {
@@ -100,6 +107,19 @@ class ProductController extends Controller
                     'alt' => $alts[$idx] ?? null,
                     'principal' => $idx === 0,
                     'ordem' => $idx + 1,
+                ]);
+            }
+            foreach ($uploads as $i => $file) {
+                if (!$file) {
+                    continue;
+                }
+                $path = $file->store('products', 'public');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'url' => Storage::url($path),
+                    'alt' => $alts[$i] ?? null,
+                    'principal' => false,
+                    'ordem' => count($urls) + $i + 1,
                 ]);
             }
         }

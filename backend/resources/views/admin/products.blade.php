@@ -6,7 +6,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <div class="card p-4">
         <h2 class="font-semibold mb-3">Novo produto</h2>
-        <form method="POST" action="{{ route('admin.produtos.store') }}" class="space-y-3">
+        <form method="POST" action="{{ route('admin.produtos.store') }}" class="space-y-3" data-loading enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input class="input" name="nome" placeholder="Nome" required>
@@ -35,9 +35,9 @@
                 </select>
             </div>
             <div class="flex items-center gap-4 text-sm">
-                <label class="flex items-center gap-2"><input type="checkbox" name="ativo" value="1" checked> Ativo</label>
-                <label class="flex items-center gap-2"><input type="checkbox" name="destaque" value="1"> Destaque</label>
-                <label class="flex items-center gap-2"><input type="checkbox" name="mais_vendido" value="1"> Mais vendido</label>
+                <label class="flex items-center gap-2"><input type="checkbox" name="ativo" value="1" checked class="accent-[var(--cor-primaria)]"> Ativo</label>
+                <label class="flex items-center gap-2"><input type="checkbox" name="destaque" value="1" class="accent-[var(--cor-primaria)]"> Destaque</label>
+                <label class="flex items-center gap-2"><input type="checkbox" name="mais_vendido" value="1" class="accent-[var(--cor-primaria)]"> Mais vendido</label>
             </div>
             <button class="btn btn-primary w-full">Salvar</button>
         </form>

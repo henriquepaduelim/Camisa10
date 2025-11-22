@@ -36,7 +36,7 @@
                     <input type="hidden" name="product_size_id" value="{{ $sizes->first()->id }}">
                 @endif
 
-                <button data-loading-text="Adicionando..." class="w-full bg-cyan-600 text-white text-sm font-semibold py-2 rounded-full hover:bg-cyan-700 transition flex items-center justify-center gap-2">
+                <button data-loading-text="Adicionando..." class="btn btn-primary w-full text-sm py-2 flex items-center justify-center gap-2">
                     <i class="fa-solid fa-cart-plus"></i>
                     Adicionar ao carrinho
                 </button>

@@ -6,7 +6,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div class="card p-4">
         <h2 class="font-semibold mb-3">Categorias</h2>
-        <form method="POST" action="{{ route('admin.categorias.store') }}" class="space-y-2 mb-3">
+        <form method="POST" action="{{ route('admin.categorias.store') }}" class="space-y-2 mb-3" data-loading>
             @csrf
             <input class="input" name="nome" placeholder="Nome" required>
             <input class="input" name="slug" placeholder="slug-exemplo" required>
@@ -28,7 +28,7 @@
 
     <div class="card p-4">
         <h2 class="font-semibold mb-3">Clubes</h2>
-        <form method="POST" action="{{ route('admin.clubes.store') }}" class="space-y-2 mb-3">
+        <form method="POST" action="{{ route('admin.clubes.store') }}" class="space-y-2 mb-3" data-loading>
             @csrf
             <input class="input" name="nome" placeholder="Nome" required>
             <input class="input" name="slug" placeholder="slug-exemplo" required>
@@ -47,7 +47,7 @@
 
     <div class="card p-4">
         <h2 class="font-semibold mb-3">Ligas</h2>
-        <form method="POST" action="{{ route('admin.ligas.store') }}" class="space-y-2 mb-3">
+        <form method="POST" action="{{ route('admin.ligas.store') }}" class="space-y-2 mb-3" data-loading>
             @csrf
             <input class="input" name="nome" placeholder="Nome" required>
             <input class="input" name="slug" placeholder="slug-exemplo" required>

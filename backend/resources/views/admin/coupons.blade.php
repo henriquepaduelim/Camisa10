@@ -6,7 +6,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <div class="card p-4">
         <h2 class="font-semibold mb-3">Novo cupom</h2>
-        <form method="POST" action="{{ route('admin.cupons.store') }}" class="space-y-2">
+        <form method="POST" action="{{ route('admin.cupons.store') }}" class="space-y-2" data-loading>
             @csrf
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <input class="input" name="codigo" placeholder="CODIGO10" required>

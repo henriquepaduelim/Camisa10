@@ -25,9 +25,9 @@ class DemoSeeder extends Seeder
     public function run(): void
     {
         $admin = User::updateOrCreate(
-            ['email' => 'admin@lojafut.test'],
+            ['email' => 'admin@galloclassics.test'],
             [
-                'name' => 'Admin Loja Fut',
+                'name' => 'Admin Gallo Classics',
                 'telefone' => '(11) 90000-0000',
                 'role' => 'admin',
                 'password' => Hash::make('Admin123!'),
@@ -35,7 +35,7 @@ class DemoSeeder extends Seeder
         );
 
         $cliente = User::updateOrCreate(
-            ['email' => 'cliente@lojafut.test'],
+            ['email' => 'cliente@galloclassics.test'],
             [
                 'name' => 'Cliente Demo',
                 'telefone' => '(11) 98888-7777',
@@ -143,7 +143,7 @@ class DemoSeeder extends Seeder
             ]
         );
 
-        Setting::updateOrCreate(['chave' => 'nome_loja'], ['valor' => 'Loja Fut']);
+        Setting::updateOrCreate(['chave' => 'nome_loja'], ['valor' => 'Gallo Classics']);
         Setting::updateOrCreate(['chave' => 'email_contato'], ['valor' => 'contato@lojafut.test']);
         Setting::updateOrCreate(['chave' => 'cor_primaria'], ['valor' => '#06b6d4']);
 

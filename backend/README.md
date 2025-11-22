@@ -1,4 +1,4 @@
-# Loja Fut – E-commerce de camisas (Laravel 12, pt-BR)
+# Gallo Classics – E-commerce de camisas (Laravel 12, pt-BR)
 
 ## Requisitos
 - PHP 8.2+, Composer.
@@ -18,8 +18,8 @@ php artisan serve
 ```
 
 Credenciais demo (seed):
-- Admin: `admin@lojafut.test` / `Admin123!`
-- Cliente: `cliente@lojafut.test` / `Cliente123`
+- Admin: `admin@galloclassics.test` / `Admin123!`
+- Cliente: `cliente@galloclassics.test` / `Cliente123`
 - Cupom: `BEMVINDO10`
 
 ## Principais rotas
