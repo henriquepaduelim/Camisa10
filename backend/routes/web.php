@@ -6,6 +6,13 @@ use App\Models\League;
 use App\Models\Product;
 use App\Services\CartService;
 use App\Services\ProductService;
+use App\Http\Controllers\Web\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Web\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Web\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Web\Admin\TaxonomyController as AdminTaxonomyController;
+use App\Http\Controllers\Web\Admin\CouponController as AdminCouponController;
+use App\Http\Controllers\Web\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Web\Admin\SettingController as AdminSettingController;
 use App\Http\Controllers\Web\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +43,23 @@ Route::get('/produtos/{slug}', function (string $slug) {
 Route::get('/carrinho', function (CartService $cartService) {
     $cart = $cartService->getCart(auth()->user());
     return view('carrinho', compact('cart'));
+});
+
+Route::post('/carrinho/cupom', function (Request $request, CartService $cartService) {
+    $data = $request->validate([
+        'cupom' => 'required|string',
+    ], [
+        'required' => 'Informe o cupom.',
+    ]);
+
+    $cart = $cartService->getCart(auth()->user());
+    try {
+        $cartService->applyCoupon($cart, $data['cupom']);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        return back()->withErrors($e->errors())->withInput();
+    }
+
+    return back()->with('success', 'Cupom aplicado com sucesso.');
 });
 
 Route::post('/carrinho', function (Request $request, CartService $cartService) {
@@ -74,5 +98,39 @@ Route::middleware('auth')->group(function () {
     Route::get('/conta', function () {
         $user = auth()->user()->load('orders.items');
         return view('conta', compact('user'));
+    });
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'login']);
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/produtos', [AdminProductController::class, 'index'])->name('admin.produtos');
+        Route::post('/produtos', [AdminProductController::class, 'store'])->name('admin.produtos.store');
+        Route::get('/produtos/{produto}/editar', [AdminProductController::class, 'edit'])->name('admin.produtos.edit');
+        Route::patch('/produtos/{produto}', [AdminProductController::class, 'update'])->name('admin.produtos.update');
+        Route::delete('/produtos/{produto}', [AdminProductController::class, 'destroy'])->name('admin.produtos.destroy');
+
+        Route::get('/taxonomias', [AdminTaxonomyController::class, 'index'])->name('admin.taxonomias');
+        Route::post('/categorias', [AdminTaxonomyController::class, 'storeCategory'])->name('admin.categorias.store');
+        Route::delete('/categorias/{categoria}', [AdminTaxonomyController::class, 'destroyCategory'])->name('admin.categorias.destroy');
+        Route::post('/clubes', [AdminTaxonomyController::class, 'storeClub'])->name('admin.clubes.store');
+        Route::delete('/clubes/{clube}', [AdminTaxonomyController::class, 'destroyClub'])->name('admin.clubes.destroy');
+        Route::post('/ligas', [AdminTaxonomyController::class, 'storeLeague'])->name('admin.ligas.store');
+        Route::delete('/ligas/{liga}', [AdminTaxonomyController::class, 'destroyLeague'])->name('admin.ligas.destroy');
+
+        Route::get('/cupons', [AdminCouponController::class, 'index'])->name('admin.cupons');
+        Route::post('/cupons', [AdminCouponController::class, 'store'])->name('admin.cupons.store');
+        Route::patch('/cupons/{cupom}', [AdminCouponController::class, 'update'])->name('admin.cupons.update');
+        Route::delete('/cupons/{cupom}', [AdminCouponController::class, 'destroy'])->name('admin.cupons.destroy');
+
+        Route::get('/pedidos', [AdminOrderController::class, 'index'])->name('admin.pedidos');
+        Route::patch('/pedidos/{pedido}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.pedidos.status');
+
+        Route::get('/configuracoes', [AdminSettingController::class, 'index'])->name('admin.settings');
+        Route::post('/configuracoes', [AdminSettingController::class, 'update'])->name('admin.settings.update');
     });
 });

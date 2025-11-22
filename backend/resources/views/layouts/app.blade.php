@@ -16,26 +16,43 @@
         <x-navbar />
 
         <main class="flex-1">
-            @if(session('success'))
-                <div class="max-w-6xl mx-auto px-4 pt-4">
-                    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-xl">
-                        {{ session('success') }}
-                    </div>
-                </div>
-            @endif
-            @if($errors->any())
-                <div class="max-w-6xl mx-auto px-4 pt-4">
-                    <div class="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-xl space-y-1">
-                        @foreach($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    </div>
-                </div>
-            @endif
             @yield('content')
         </main>
 
         <x-footer />
     </div>
+
+    <div id="toast-container" class="fixed top-3 right-3 space-y-2 z-40"></div>
+    <script>
+        (function() {
+            const container = document.getElementById('toast-container');
+            const messages = [];
+            @if(session('success'))
+                messages.push({ type: 'success', text: @json(session('success')) });
+            @endif
+            @if($errors->any())
+                messages.push({ type: 'error', text: @json($errors->all()) });
+            @endif
+            messages.flat().forEach(msg => {
+                const div = document.createElement('div');
+                div.className = 'toast ' + (msg.type === 'success' ? 'toast-success' : 'toast-error');
+                div.innerText = Array.isArray(msg.text) ? msg.text.join('\n') : msg.text;
+                container.appendChild(div);
+                setTimeout(() => div.classList.add('toast-hide'), 3000);
+                setTimeout(() => div.remove(), 3500);
+            });
+
+            document.querySelectorAll('form[data-loading]').forEach(form => {
+                form.addEventListener('submit', () => {
+                    const btn = form.querySelector('[data-loading-text]');
+                    if (btn) {
+                        btn.dataset.originalText = btn.innerHTML;
+                        btn.innerHTML = btn.dataset.loadingText || 'Enviando...';
+                        btn.disabled = true;
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

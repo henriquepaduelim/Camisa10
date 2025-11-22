@@ -28,7 +28,7 @@
                 @endif
             </div>
 
-            <form class="space-y-4" method="POST" action="/carrinho">
+            <form class="space-y-4" method="POST" action="/carrinho" data-loading>
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $produto->id }}">
                 <div>
@@ -48,7 +48,7 @@
                     <input type="number" name="quantidade" min="1" value="1" class="w-24 rounded-xl border border-slate-200 px-3 py-2 text-sm">
                 </div>
                 <div class="flex flex-col gap-2">
-                    <button class="bg-cyan-600 text-white font-semibold px-5 py-3 rounded-full hover:bg-cyan-700 transition flex items-center justify-center gap-2">
+                    <button data-loading-text="Adicionando..." class="bg-cyan-600 text-white font-semibold px-5 py-3 rounded-full hover:bg-cyan-700 transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-cart-plus"></i> Adicionar ao carrinho
                     </button>
                     <a href="/checkout" class="text-center border border-cyan-600 text-cyan-700 font-semibold px-5 py-3 rounded-full hover:bg-cyan-50 transition">Comprar agora</a>

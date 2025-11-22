@@ -10,7 +10,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <form method="POST" action="/login" class="bg-white border border-slate-100 rounded-xl p-5 space-y-4 shadow-sm">
+    <form method="POST" action="/login" class="bg-white border border-slate-100 rounded-xl p-5 space-y-4 shadow-sm" data-loading>
         @csrf
         <div class="space-y-1">
             <label class="text-sm font-semibold text-slate-700" for="email">E-mail</label>
@@ -26,7 +26,7 @@
             <input id="remember" name="remember" type="checkbox" class="accent-cyan-600">
             <label for="remember" class="text-sm text-slate-600">Lembrar-me</label>
         </div>
-        <button class="w-full bg-cyan-600 text-white font-semibold px-4 py-3 rounded-full hover:bg-cyan-700 transition">Entrar</button>
+        <button data-loading-text="Entrando..." class="w-full bg-cyan-600 text-white font-semibold px-4 py-3 rounded-full hover:bg-cyan-700 transition">Entrar</button>
         <p class="text-sm text-center text-slate-600">Ainda não tem conta? <a href="/registrar" class="text-cyan-700 font-semibold">Criar conta</a></p>
     </form>
 </section>

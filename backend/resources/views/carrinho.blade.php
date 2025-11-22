@@ -57,9 +57,10 @@
                 <span>R$ {{ number_format($cart->total, 2, ',', '.') }}</span>
             </div>
             <a href="/checkout" class="w-full inline-flex justify-center items-center bg-cyan-600 text-white font-semibold px-4 py-3 rounded-full hover:bg-cyan-700 transition">Finalizar compra</a>
-            <form class="flex gap-2" method="POST">
+            <form class="flex gap-2" method="POST" action="/carrinho/cupom" data-loading>
+                @csrf
                 <input type="text" name="cupom" placeholder="Cupom de desconto" class="flex-1 rounded-xl border border-slate-200 px-3 py-2 text-sm" />
-                <button class="px-4 py-2 text-sm font-semibold bg-slate-900 text-white rounded-xl">Aplicar</button>
+                <button data-loading-text="Aplicando..." class="px-4 py-2 text-sm font-semibold bg-slate-900 text-white rounded-xl">Aplicar</button>
             </form>
         </div>
     </div>
