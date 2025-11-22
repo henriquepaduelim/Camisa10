@@ -17,7 +17,7 @@
                 <option value="recentes">Novidades</option>
                 <option value="populares">Populares</option>
             </select>
-            <button class="px-4 py-2 bg-cyan-600 text-white rounded-full text-sm font-semibold hover:bg-cyan-700">Aplicar</button>
+            <button class="px-4 py-2 btn btn-primary text-sm font-semibold">Aplicar</button>
         </form>
     </div>
 
@@ -61,7 +61,7 @@
                         <input name="preco_max" type="number" step="0.01" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="1000" />
                     </div>
                 </div>
-                <button class="w-full bg-cyan-600 text-white py-2 rounded-xl font-semibold text-sm hover:bg-cyan-700">Filtrar</button>
+                <button class="w-full btn btn-primary py-2 rounded-xl font-semibold text-sm">Filtrar</button>
             </form>
         </aside>
 

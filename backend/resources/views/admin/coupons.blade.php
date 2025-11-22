@@ -47,7 +47,7 @@
                                 <input type="hidden" name="limite_uso" value="{{ $c->limite_uso }}">
                                 <input type="hidden" name="expira_em" value="{{ optional($c->expira_em)->format('Y-m-d') }}">
                                 <input type="hidden" name="ativo" value="{{ $c->ativo ? 0 : 1 }}">
-                                <button class="text-xs text-cyan-700 font-semibold">Toggle ativo</button>
+                                <button class="text-xs text-brand font-semibold">Toggle ativo</button>
                             </form>
                             <form method="POST" action="{{ route('admin.cupons.destroy', $c) }}" class="inline" onsubmit="return confirm('Remover?')">
                                 @csrf @method('DELETE')
@@ -61,5 +61,5 @@
     </div>
 </div>
 
-<style>.input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none; }</style>
+<style>.input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none; }</style>
 @endsection

@@ -9,7 +9,7 @@
             <h1 class="text-xl font-bold">Editar produto</h1>
             <p class="text-sm text-slate-600">{{ $produto->nome }}</p>
         </div>
-        <a href="{{ route('admin.produtos') }}" class="text-sm text-cyan-700 font-semibold">Voltar</a>
+        <a href="{{ route('admin.produtos') }}" class="text-sm text-brand font-semibold">Voltar</a>
     </div>
 
     <form method="POST" action="{{ route('admin.produtos.update', $produto) }}" class="space-y-4">
@@ -106,7 +106,7 @@
                     <label class="text-sm font-semibold">Upload de imagens</label>
                     <input type="file" name="imagens_upload[]" multiple class="text-sm">
                 </div>
-                <button type="button" onclick="addImagem()" class="mt-2 text-sm text-cyan-700 font-semibold">+ Adicionar linha</button>
+                <button type="button" onclick="addImagem()" class="mt-2 text-sm text-brand font-semibold">+ Adicionar linha</button>
             </div>
 
             <div class="card p-4">
@@ -125,7 +125,7 @@
                         <input class="input" name="tamanho_estoque[]" type="number" placeholder="Estoque">
                     </div>
                 </div>
-                <button type="button" onclick="addTamanho()" class="mt-2 text-sm text-cyan-700 font-semibold">+ Adicionar linha</button>
+                <button type="button" onclick="addTamanho()" class="mt-2 text-sm text-brand font-semibold">+ Adicionar linha</button>
             </div>
         </div>
 
@@ -134,9 +134,9 @@
 </div>
 
 <style>
-    .input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none; }
+    .input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none; }
     .btn { @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold transition; }
-    .btn-primary { @apply bg-cyan-600 text-white hover:bg-cyan-700; }
+    .btn-primary { @apply bg-[var(--cor-acento)] text-white hover:bg-[var(--cor-acento-escuro)]; }
 </style>
 <script>
     function addImagem() {

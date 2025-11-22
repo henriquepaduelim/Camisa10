@@ -14,11 +14,12 @@
 }
 
 :root {
-    --cor-primaria: #eb8a14; /* amber-earth 500 */
-    --cor-primaria-escura: #bc6f10; /* amber-earth 600 */
-    --cor-acento: #f55c0a; /* blaze-orange 500 */
-    --cor-secundaria: #311202; /* blaze-orange 900 */
-    --cor-fundo: #fdf3e8; /* amber-earth 50 */
+    --cor-primaria: #111111; /* preto */
+    --cor-primaria-escura: #000000;
+    --cor-acento: #b22222; /* vermelho apenas para detalhes */
+    --cor-acento-escuro: #8d1a1a;
+    --cor-secundaria: #1f1f1f;
+    --cor-fundo: #f4f4f4;
 }
 
 .btn {
@@ -28,17 +29,17 @@
 .btn-primary {
     background-color: var(--cor-primaria);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(235, 138, 20, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .btn-primary:hover { background-color: var(--cor-primaria-escura); }
 .btn-secondary {
     background-color: transparent;
-    color: var(--cor-primaria-escura);
+    color: var(--cor-primaria);
     border: 1px solid var(--cor-primaria);
     box-shadow: none;
 }
 
-.text-brand { color: var(--cor-primaria-escura); }
+.text-brand { color: var(--cor-primaria); }
 .bg-brand { background-color: var(--cor-primaria); color: #fff; }
 .border-brand { border-color: var(--cor-primaria); }
 
@@ -50,7 +51,7 @@
 }
 .field-brand:focus {
     border-color: var(--cor-primaria);
-    box-shadow: 0 0 0 2px rgba(235, 138, 20, 0.25);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .toast {

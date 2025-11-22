@@ -37,7 +37,7 @@
                         @foreach($produto->sizes as $size)
                             <label class="cursor-pointer">
                                 <input required type="radio" name="product_size_id" value="{{ $size->id }}" class="peer sr-only">
-                                <span class="peer-checked:bg-cyan-600 peer-checked:text-white inline-flex items-center justify-center px-3 py-2 rounded-full border border-slate-200 text-sm">{{ $size->tamanho }}</span>
+                                <span class="peer-checked:bg-[var(--cor-primaria)] peer-checked:text-white inline-flex items-center justify-center px-3 py-2 rounded-full border border-slate-200 text-sm">{{ $size->tamanho }}</span>
                             </label>
                         @endforeach
                     </div>
@@ -51,11 +51,11 @@
                     <button data-loading-text="Adicionando..." class="btn btn-primary px-5 py-3 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-cart-plus"></i> Adicionar ao carrinho
                     </button>
-                    <a href="/checkout" class="text-center btn btn-secondary font-semibold px-5 py-3 rounded-full hover:bg-amber-50 transition border-brand">Comprar agora</a>
+                    <a href="/checkout" class="text-center btn btn-secondary font-semibold px-5 py-3 rounded-full hover:bg-slate-100 transition border-brand">Comprar agora</a>
                 </div>
                 <div class="text-sm text-slate-600 flex flex-col gap-1">
-                    <span><i class="fa-solid fa-truck-fast mr-2 text-cyan-600"></i>Envio rápido para todo o Brasil</span>
-                    <span><i class="fa-solid fa-shield-halved mr-2 text-cyan-600"></i>Pagamento seguro</span>
+                    <span><i class="fa-solid fa-truck-fast mr-2 text-brand"></i>Envio rápido para todo o Brasil</span>
+                    <span><i class="fa-solid fa-shield-halved mr-2 text-brand"></i>Pagamento seguro</span>
                 </div>
             </form>
         </div>

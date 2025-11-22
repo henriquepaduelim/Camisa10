@@ -8,8 +8,8 @@
         <form action="/produtos" method="GET" class="hidden sm:flex flex-1 max-w-md">
             <label class="sr-only" for="busca">Buscar</label>
             <div class="flex w-full gap-2">
-                <input id="busca" name="q" type="search" placeholder="Buscar camisas, clubes, ligas..." class="w-full rounded-full border border-slate-200 px-4 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" />
-                <button class="bg-cyan-600 text-white rounded-full px-4 text-sm font-semibold hover:bg-cyan-700 transition">
+                <input id="busca" name="q" type="search" placeholder="Buscar camisas, clubes, ligas..." class="w-full rounded-full border border-slate-200 px-4 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none" />
+                <button class="btn btn-primary rounded-full px-4 text-sm font-semibold">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -51,8 +51,8 @@
         <form action="/produtos" method="GET">
             <label class="sr-only" for="busca-mobile">Buscar</label>
             <div class="flex gap-2">
-                <input id="busca-mobile" name="q" type="search" placeholder="Buscar camisas..." class="w-full rounded-full border border-slate-200 px-4 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" />
-                <button class="bg-cyan-600 text-white rounded-full px-4 text-sm font-semibold hover:bg-cyan-700 transition">
+                <input id="busca-mobile" name="q" type="search" placeholder="Buscar camisas..." class="w-full rounded-full border border-slate-200 px-4 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none" />
+                <button class="btn btn-primary rounded-full px-4 text-sm font-semibold">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>

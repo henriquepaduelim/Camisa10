@@ -2,18 +2,38 @@
 
 namespace App\Services;
 
+use App\Services\Payments\PagarmeGateway;
+use Illuminate\Support\Facades\Log;
+
 class PaymentService
 {
-    /**
-     * Mock de pagamento. Retorna "pago" sempre que valor > 0.
-     */
-    public function processar(float $valor, string $metodo): string
+    public function __construct(private PagarmeGateway $pagarmeGateway)
     {
-        // Ponto de extensão: integrar gateway real implementando esta interface.
+    }
+
+    /**
+     * Processa o pagamento via driver configurado.
+     */
+    public function processar(float $valor, string $metodo, array $meta = []): string
+    {
         if ($valor <= 0) {
             return 'falhou';
         }
 
-        return 'pago';
+        $driver = config('payment.provider', 'mock');
+
+        try {
+            return match ($driver) {
+                'pagarme' => $this->pagarmeGateway->processar($valor, $metodo, $meta),
+                default => 'pago',
+            };
+        } catch (\Throwable $e) {
+            Log::error('Erro ao processar pagamento', [
+                'driver' => $driver,
+                'metodo' => $metodo,
+                'erro' => $e->getMessage(),
+            ]);
+            return 'falhou';
+        }
     }
 }

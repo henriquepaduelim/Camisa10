@@ -26,7 +26,7 @@
 
                 @if($sizes->count() > 1)
                     <label class="text-xs font-semibold text-slate-600">Tamanho</label>
-                    <select name="product_size_id" required class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                    <select name="product_size_id" required class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none">
                         <option value="">Selecione</option>
                         @foreach($sizes as $size)
                             <option value="{{ $size->id }}">{{ $size->tamanho }}</option>

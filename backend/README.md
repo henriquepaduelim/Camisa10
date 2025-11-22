@@ -8,7 +8,7 @@
 ## Setup rápido
 ```bash
 cp .env.example .env
-# Ajuste DB_* se for usar MySQL/PostgreSQL. Padrão: mysql/lojafut/senha123.
+# Ajuste DB_* (SQLite por padrão; configure PG/MySQL se preferir).
 composer install
 php artisan key:generate
 php artisan migrate --seed
@@ -41,12 +41,23 @@ Credenciais demo (seed):
 - Tema: edite variáveis em `resources/css/app.css` (`--cor-primaria`, fontes).
 - Breakpoints/tipografia: ajustar em Tailwind (vite + tailwindcss v4).
 - Textos: todos em pt-BR, alterar nas views.
-- Pagamento: substituir `PaymentService` por gateway real mantendo interface `processar`.
+- Pagamento: `config/payment.php` (`PAYMENT_PROVIDER=mock` ou Pagar.me).
 
 ## Testes
-- Rode `php artisan test`. (Adicione testes de fluxo: listagem, carrinho, checkout, auth).
+- Rode `php artisan test`. Já há testes para checkout (cupom+tamanho), admin pedidos/status, filtros de catálogo e auth/conta.
 
-## Observações
-- API usa tokens Sanctum (`auth:sanctum`).
-- Middleware `admin` valida `role = admin`.
-- Layout mobile-first com foco em toque e legibilidade; ícones Font Awesome CDN.
+## Fluxo admin
+- Login: `/admin/login` (admin seed).
+- CRUD produtos, taxonomias, cupons, pedidos e settings via painel `/admin`.
+
+## Pagamento
+- Mock padrão: `PAYMENT_PROVIDER=mock`.
+- Pagar.me: defina `PAYMENT_PROVIDER=pagarme` e `PAGARME_API_KEY` no `.env` + `php artisan config:clear`.
+
+## Deploy checklist
+- `.env` com APP_KEY, APP_URL, DB_* e PAYMENT_PROVIDER configurados.
+- Banco migrado/seed: `php artisan migrate --seed`.
+- Link de storage para uploads: `php artisan storage:link`.
+- Build frontend: `npm run build`.
+- Permissões: `storage/` e `bootstrap/cache` graváveis.
+- Opcional: `php artisan config:cache` e `php artisan route:cache` após revisar `.env`.

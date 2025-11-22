@@ -33,7 +33,7 @@
             @foreach($pedidosRecentes as $pedido)
                 <div class="flex justify-between text-sm">
                     <span>#{{ $pedido->id }} • {{ $pedido->user?->name ?? 'Guest' }}</span>
-                    <span class="font-semibold text-cyan-700">{{ ucfirst($pedido->status) }}</span>
+                    <span class="font-semibold text-brand">{{ ucfirst($pedido->status) }}</span>
                 </div>
             @endforeach
         </div>

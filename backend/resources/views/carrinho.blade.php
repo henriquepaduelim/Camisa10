@@ -21,7 +21,7 @@
     @if($cart->items->isEmpty())
         <div class="bg-white border border-slate-100 rounded-xl p-6 text-center">
             <p class="text-slate-600">Seu carrinho está vazio.</p>
-            <a href="/produtos" class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-full font-semibold">Ir para a loja</a>
+            <a href="/produtos" class="mt-4 inline-flex items-center gap-2 px-4 py-2 btn btn-primary">Ir para a loja</a>
         </div>
     @else
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

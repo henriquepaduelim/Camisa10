@@ -23,7 +23,11 @@ class CheckoutService
         return DB::transaction(function () use ($cart, $dadosCliente, $enderecoDados, $metodoPagamento) {
             $address = $this->upsertAddress($cart, $enderecoDados);
             $total = $cart->total;
-            $pagamentoStatus = $this->payment->processar($total, $metodoPagamento);
+            $pagamentoStatus = $this->payment->processar($total, $metodoPagamento, [
+                'cliente_nome' => $dadosCliente['nome'] ?? null,
+                'cliente_email' => $dadosCliente['email'] ?? null,
+                'descricao' => 'Pedido #' . uniqid(),
+            ]);
 
             $order = Order::create([
                 'user_id' => $cart->user_id,

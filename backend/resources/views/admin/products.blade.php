@@ -63,10 +63,10 @@
                         </td>
                         <td class="py-2">R$ {{ number_format($p->preco, 2, ',', '.') }}</td>
                         <td class="py-2 text-xs">
-                            @if($p->ativo) <span class="text-emerald-600 font-semibold">Ativo</span> @else <span class="text-slate-500">Inativo</span> @endif
+                            @if($p->ativo) <span class="text-brand font-semibold">Ativo</span> @else <span class="text-slate-500">Inativo</span> @endif
                         </td>
                         <td class="py-2">
-                            <a class="text-xs text-cyan-700 font-semibold" href="{{ route('admin.produtos.edit', $p) }}">Editar</a>
+                            <a class="text-xs text-brand font-semibold" href="{{ route('admin.produtos.edit', $p) }}">Editar</a>
                             <form method="POST" action="{{ route('admin.produtos.update', $p) }}" class="inline">
                                 @csrf @method('PATCH')
                                 <input type="hidden" name="nome" value="{{ $p->nome }}">
