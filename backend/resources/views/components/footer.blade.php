@@ -14,6 +14,7 @@
                 <li><a class="hover:text-white" href="#">Contato</a></li>
                 <li><a class="hover:text-white" href="#">Termos de uso</a></li>
                 <li><a class="hover:text-white" href="#">Política de privacidade</a></li>
+                <li><a class="hover:text-white" href="{{ url('/admin/login') }}">Área do lojista</a></li>
             </ul>
         </div>
         <div>

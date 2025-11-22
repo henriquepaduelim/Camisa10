@@ -89,9 +89,9 @@ Route::get('/checkout', function (CartService $cartService) {
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
 Route::get('/registrar', [AuthController::class, 'showRegister']);
-Route::post('/registrar', [AuthController::class, 'register']);
+Route::post('/registrar', [AuthController::class, 'register'])->middleware('throttle:8,1');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
@@ -103,7 +103,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
-    Route::post('/login', [AdminAuthController::class, 'login']);
+    Route::post('/login', [AdminAuthController::class, 'login'])->middleware('throttle:5,1');
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
