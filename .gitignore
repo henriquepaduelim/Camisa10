@@ -1,0 +1,5 @@
+# macOS cruft
+.DS_Store
+
+# Docs/local notes not to commit
+codex.md
