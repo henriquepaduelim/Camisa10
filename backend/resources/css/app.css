@@ -23,7 +23,7 @@
 }
 
 .btn {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full font-semibold transition;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full font-semibold transition cursor-pointer;
 }
 
 .btn-primary {

@@ -56,32 +56,33 @@
             </thead>
             <tbody class="divide-y">
                 @foreach($produtos as $p)
-                    <tr>
+                    <tr class="align-middle">
                         <td class="py-2">
                             <div class="font-semibold">{{ $p->nome }}</div>
                             <div class="text-xs text-slate-500">{{ $p->slug }}</div>
                         </td>
                         <td class="py-2">R$ {{ number_format($p->preco, 2, ',', '.') }}</td>
                         <td class="py-2 text-xs">
-                            @if($p->ativo) <span class="text-brand font-semibold">Ativo</span> @else <span class="text-slate-500">Inativo</span> @endif
-                        </td>
-                        <td class="py-2">
-                            <a class="text-xs text-brand font-semibold" href="{{ route('admin.produtos.edit', $p) }}">Editar</a>
                             <form method="POST" action="{{ route('admin.produtos.update', $p) }}" class="inline">
                                 @csrf @method('PATCH')
                                 <input type="hidden" name="nome" value="{{ $p->nome }}">
-                                <input type="hidden" name="slug" value="{{ $p->slug }}">
+                                <input type="hidden" name="slug" value={{ $p->slug }}>
                                 <input type="hidden" name="preco" value="{{ $p->preco }}">
                                 <input type="hidden" name="preco_promocional" value="{{ $p->preco_promocional }}">
                                 <input type="hidden" name="category_id" value="{{ $p->category_id }}">
                                 <input type="hidden" name="club_id" value="{{ $p->club_id }}">
                                 <input type="hidden" name="league_id" value="{{ $p->league_id }}">
                                 <input type="hidden" name="ativo" value="{{ $p->ativo ? 0 : 1 }}">
-                                <button class="text-xs text-cyan-700 font-semibold">Toggle ativo</button>
+                                <button class="font-semibold underline decoration-transparent hover:decoration-inherit cursor-pointer {{ $p->ativo ? 'text-brand' : 'text-slate-500' }}">
+                                    {{ $p->ativo ? 'Ativo' : 'Inativo' }}
+                                </button>
                             </form>
+                        </td>
+                        <td class="py-2 flex items-center gap-3 whitespace-nowrap align-middle">
+                            <a class="text-xs text-brand font-semibold cursor-pointer" href="{{ route('admin.produtos.edit', $p) }}">Editar</a>
                             <form method="POST" action="{{ route('admin.produtos.destroy', $p) }}" class="inline" onsubmit="return confirm('Remover?')">
                                 @csrf @method('DELETE')
-                                <button class="text-xs text-red-600 font-semibold ml-2">Excluir</button>
+                                <button class="text-xs text-red-600 font-semibold cursor-pointer">Excluir</button>
                             </form>
                         </td>
                     </tr>
@@ -95,6 +96,6 @@
 </div>
 
 <style>
-    .input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none; }
+    .input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none; }
 </style>
 @endsection

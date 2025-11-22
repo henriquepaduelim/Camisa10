@@ -3,10 +3,14 @@
 @section('title', 'Loja mobile de camisas')
 
 @section('content')
-<section class="bg-gradient-to-br from-[var(--cor-primaria)] to-[#1c1c1c] text-white">
-    <div class="max-w-6xl mx-auto px-4 py-10 sm:py-14 flex flex-col sm:flex-row gap-8 items-center">
+<section class="relative overflow-hidden text-white">
+    <video class="absolute inset-0 w-full h-full object-cover filter grayscale" autoplay muted loop playsinline>
+        <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-br from-[rgba(0,0,0,0.75)] via-[rgba(0,0,0,0.55)] to-[rgba(0,0,0,0.7)]"></div>
+    <div class="relative max-w-6xl mx-auto px-4 py-12 sm:py-16 flex flex-col sm:flex-row gap-8 items-center">
         <div class="flex-1 space-y-4">
-            <p class="text-sm uppercase tracking-wide text-cyan-200">Nova coleção</p>
+            <p class="text-sm uppercase tracking-wide text-slate-100">Nova coleção</p>
             <h1 class="text-3xl sm:text-4xl font-bold leading-tight">Camisas oficiais e retrô, feitas para quem vive futebol 24/7.</h1>
             <p class="text-slate-100">Escolha seu clube ou seleção favorita, com entrega rápida e experiência otimizada para smartphones.</p>
             <div class="flex flex-col sm:flex-row gap-3">

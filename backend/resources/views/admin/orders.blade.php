@@ -41,5 +41,5 @@
     <div class="mt-3">{{ $pedidos->links() }}</div>
 </div>
 
-<style>.input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none; } .btn { @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold transition; } .btn-primary { @apply bg-[var(--cor-acento)] text-white hover:bg-[var(--cor-acento-escuro)]; }</style>
+<style>.input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none; } .btn { @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold transition cursor-pointer; } .btn-primary { @apply bg-[var(--cor-acento)] text-white hover:bg-[var(--cor-acento-escuro)]; }</style>
 @endsection

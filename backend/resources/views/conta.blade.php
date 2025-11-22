@@ -25,7 +25,7 @@
                     <div class="border border-slate-100 rounded-lg p-3">
                         <div class="flex justify-between text-sm">
                             <span>#{{ $order->id }} • {{ $order->created_at->format('d/m/Y') }}</span>
-                            <span class="font-semibold text-cyan-700">{{ ucfirst($order->status) }}</span>
+                            <span class="font-semibold text-brand">{{ ucfirst($order->status) }}</span>
                         </div>
                         <div class="text-sm text-slate-700 mt-1">
                             Total: R$ {{ number_format($order->total, 2, ',', '.') }}

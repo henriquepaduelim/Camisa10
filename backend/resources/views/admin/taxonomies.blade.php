@@ -18,9 +18,9 @@
         </form>
         <ul class="space-y-1 text-sm">
             @foreach($categorias as $c)
-                <li class="flex justify-between">
+                <li class="flex justify-between items-center">
                     <span>{{ $c->nome }}</span>
-                    <form method="POST" action="{{ route('admin.categorias.destroy', $c) }}" onsubmit="return confirm('Remover?')">@csrf @method('DELETE') <button class="text-red-600">x</button></form>
+                    <form method="POST" action="{{ route('admin.categorias.destroy', $c) }}" onsubmit="return confirm('Remover?')">@csrf @method('DELETE') <button class="text-red-600 font-semibold cursor-pointer">x</button></form>
                 </li>
             @endforeach
         </ul>
@@ -37,9 +37,9 @@
         </form>
         <ul class="space-y-1 text-sm">
             @foreach($clubes as $c)
-                <li class="flex justify-between">
+                <li class="flex justify-between items-center">
                     <span>{{ $c->nome }}</span>
-                    <form method="POST" action="{{ route('admin.clubes.destroy', $c) }}" onsubmit="return confirm('Remover?')">@csrf @method('DELETE') <button class="text-red-600">x</button></form>
+                    <form method="POST" action="{{ route('admin.clubes.destroy', $c) }}" onsubmit="return confirm('Remover?')">@csrf @method('DELETE') <button class="text-red-600 font-semibold cursor-pointer">x</button></form>
                 </li>
             @endforeach
         </ul>
@@ -56,9 +56,9 @@
         </form>
         <ul class="space-y-1 text-sm">
             @foreach($ligas as $l)
-                <li class="flex justify-between">
+                <li class="flex justify-between items-center">
                     <span>{{ $l->nome }}</span>
-                    <form method="POST" action="{{ route('admin.ligas.destroy', $l) }}" onsubmit="return confirm('Remover?')">@csrf @method('DELETE') <button class="text-red-600">x</button></form>
+                    <form method="POST" action="{{ route('admin.ligas.destroy', $l) }}" onsubmit="return confirm('Remover?')">@csrf @method('DELETE') <button class="text-red-600 font-semibold cursor-pointer">x</button></form>
                 </li>
             @endforeach
         </ul>

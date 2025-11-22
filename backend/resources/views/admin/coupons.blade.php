@@ -32,12 +32,12 @@
             <thead><tr class="text-left text-slate-600"><th>Código</th><th>Tipo</th><th>Valor</th><th>Ativo</th><th>Ações</th></tr></thead>
             <tbody class="divide-y">
                 @foreach($cupons as $c)
-                    <tr>
+                    <tr class="align-middle">
                         <td class="py-2 font-semibold">{{ $c->codigo }}</td>
                         <td class="py-2">{{ $c->tipo }}</td>
                         <td class="py-2">{{ $c->valor }}</td>
                         <td class="py-2 text-xs">{{ $c->ativo ? 'Sim' : 'Não' }}</td>
-                        <td class="py-2">
+                        <td class="py-2 flex items-center gap-3 whitespace-nowrap align-middle">
                             <form method="POST" action="{{ route('admin.cupons.update', $c) }}" class="inline">
                                 @csrf @method('PATCH')
                                 <input type="hidden" name="codigo" value="{{ $c->codigo }}">
@@ -47,11 +47,11 @@
                                 <input type="hidden" name="limite_uso" value="{{ $c->limite_uso }}">
                                 <input type="hidden" name="expira_em" value="{{ optional($c->expira_em)->format('Y-m-d') }}">
                                 <input type="hidden" name="ativo" value="{{ $c->ativo ? 0 : 1 }}">
-                                <button class="text-xs text-brand font-semibold">Toggle ativo</button>
+                                <button class="text-xs text-brand font-semibold underline decoration-transparent hover:decoration-inherit cursor-pointer">Toggle ativo</button>
                             </form>
                             <form method="POST" action="{{ route('admin.cupons.destroy', $c) }}" class="inline" onsubmit="return confirm('Remover?')">
                                 @csrf @method('DELETE')
-                                <button class="text-xs text-red-600 font-semibold ml-2">Excluir</button>
+                                <button class="text-xs text-red-600 font-semibold cursor-pointer">Excluir</button>
                             </form>
                         </td>
                     </tr>
