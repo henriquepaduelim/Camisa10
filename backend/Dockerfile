@@ -24,7 +24,9 @@ RUN composer install --no-dev --optimize-autoloader \
  && npm install \
  && npm run build \
  && php artisan storage:link || true \
+ && php artisan migrate --force \
  && php artisan config:clear && php artisan route:clear && php artisan view:clear
+
 
 EXPOSE 80
 CMD ["apache2-foreground"]
