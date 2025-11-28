@@ -24,6 +24,11 @@ Route::get('/', function () {
     return view('home', compact('destaques', 'maisVendidos'));
 });
 
+// Healthcheck simples para monitoramento
+Route::get('/healthz', function () {
+    return response()->json(['ok' => true]);
+})->middleware('throttle:10,1');
+
 Route::get('/produtos', function (\Illuminate\Http\Request $request, ProductService $service) {
     $produtos = $service->list($request->all(), 12);
     $clubes = Club::all();

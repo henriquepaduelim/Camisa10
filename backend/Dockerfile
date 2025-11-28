@@ -25,8 +25,10 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 RUN composer install --no-dev --optimize-autoloader \
  && npm install \
  && npm run build \
+ && php artisan adminlte:install --only=assets --force || true \
  && php artisan storage:link || true \
  && php artisan config:clear && php artisan route:clear && php artisan view:clear
+RUN chmod -R 775 storage bootstrap/cache
 
 
 EXPOSE 80
