@@ -15,6 +15,8 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf \
  && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}/../!g' /etc/apache2/apache2.conf
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN printf "\n<Directory /var/www/html/public>\n    AllowOverride All\n    DirectoryIndex index.php\n</Directory>\n" >> /etc/apache2/apache2.conf
 
 WORKDIR /var/www/html
 COPY . .
