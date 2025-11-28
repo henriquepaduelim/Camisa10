@@ -11,6 +11,11 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Define o DocumentRoot para a pasta public do Laravel
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf \
+ && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}/../!g' /etc/apache2/apache2.conf
+
 WORKDIR /var/www/html
 COPY . .
 RUN chown -R www-data:www-data storage bootstrap/cache
