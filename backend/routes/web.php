@@ -18,10 +18,31 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $heroItems = Product::with('images')
+        ->where('hero', true)
+        ->orderBy('hero_order')
+        ->take(3)
+        ->get();
+
+    if ($heroItems->count() < 3) {
+        $fillCount = 3 - $heroItems->count();
+        $extras = Product::with('images')
+            ->where('destaque', true)
+            ->whereNotIn('id', $heroItems->pluck('id'))
+            ->orderBy('updated_at', 'desc')
+            ->take($fillCount)
+            ->get();
+        $heroItems = $heroItems->merge($extras);
+    }
+
     $destaques = Product::with('images')->where('destaque', true)->take(8)->get();
     $maisVendidos = Product::with('images')->where('mais_vendido', true)->take(8)->get();
 
-    return view('home', compact('destaques', 'maisVendidos'));
+    return view('home', [
+        'destaques' => $destaques,
+        'maisVendidos' => $maisVendidos,
+        'heroItems' => $heroItems,
+    ]);
 });
 
 // Healthcheck simples para monitoramento

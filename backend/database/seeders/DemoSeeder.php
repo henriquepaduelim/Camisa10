@@ -192,14 +192,7 @@ class DemoSeeder extends Seeder
                 array_merge($produtoData, ['moeda' => 'BRL', 'ativo' => true, 'estoque_total' => 0])
             );
 
-            $imagens = [
-                ['url' => "https://via.placeholder.com/800x800?text={$produto->nome}", 'principal' => true, 'ordem' => 1],
-                ['url' => "https://via.placeholder.com/800x800?text={$produto->nome}+2", 'principal' => false, 'ordem' => 2],
-            ];
             $produto->images()->delete();
-            foreach ($imagens as $img) {
-                ProductImage::create(array_merge($img, ['product_id' => $produto->id]));
-            }
 
             $tamanhos = [
                 ['tamanho' => 'P', 'estoque' => 10],

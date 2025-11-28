@@ -124,6 +124,8 @@ class ProductController extends Controller
             'league_id' => 'nullable|exists:leagues,id',
             'ativo' => 'nullable|boolean',
             'destaque' => 'nullable|boolean',
+            'hero' => 'nullable|boolean',
+            'hero_order' => 'nullable|integer|min:1|max:10',
             'mais_vendido' => 'nullable|boolean',
             'imagens_url' => 'nullable|array',
             'imagens_url.*' => 'nullable|url',

@@ -32,4 +32,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 
 EXPOSE 80
-CMD ["bash", "-lc", "php artisan migrate --force && php artisan db:seed --class=DemoSeeder --force && apache2-foreground"]
+CMD ["bash", "-lc", "php artisan migrate --force && php artisan db:seed --force && apache2-foreground"]

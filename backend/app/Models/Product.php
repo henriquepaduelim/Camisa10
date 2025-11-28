@@ -22,6 +22,8 @@ class Product extends Model
         'moeda',
         'ativo',
         'destaque',
+        'hero',
+        'hero_order',
         'mais_vendido',
         'lancamento',
         'sku',
@@ -35,6 +37,7 @@ class Product extends Model
         'tags' => 'array',
         'ativo' => 'boolean',
         'destaque' => 'boolean',
+        'hero' => 'boolean',
         'mais_vendido' => 'boolean',
         'lancamento' => 'boolean',
     ];

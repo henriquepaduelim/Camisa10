@@ -104,9 +104,18 @@
                 <label class="form-check-label" for="destaque-editar">Destaque</label>
             </div>
             <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="hero" value="1" id="hero-editar" @checked($produto->hero)>
+                <label class="form-check-label" for="hero-editar">Hero</label>
+            </div>
+            <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="mais_vendido" value="1" id="maisvendido-editar" @checked($produto->mais_vendido)>
                 <label class="form-check-label" for="maisvendido-editar">Mais vendido</label>
             </div>
+        </div>
+        <div class="col-sm-4">
+            <label class="form-label">Ordem no hero (1-10)</label>
+            <input class="form-control" name="hero_order" type="number" min="1" max="10" value="{{ old('hero_order', $produto->hero_order) }}" placeholder="Ex.: 1">
+            <div class="form-text">Use para ordenar os itens do carrossel (máx. 3 marcados).</div>
         </div>
 
         <div class="row g-3">

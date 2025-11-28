@@ -71,9 +71,18 @@
                     <label class="form-check-label" for="destaque-novo">Destaque</label>
                 </div>
                 <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="hero" value="1" id="hero-novo">
+                    <label class="form-check-label" for="hero-novo">Hero</label>
+                </div>
+                <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="mais_vendido" value="1" id="maisvendido-novo">
                     <label class="form-check-label" for="maisvendido-novo">Mais vendido</label>
                 </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label">Ordem no hero (1-10)</label>
+                <input class="form-control" name="hero_order" type="number" min="1" max="10" placeholder="Ex.: 1">
+                <div class="form-text">Use para ordenar os itens do carrossel (máx. 3 marcados).</div>
             </div>
 
             <div>
