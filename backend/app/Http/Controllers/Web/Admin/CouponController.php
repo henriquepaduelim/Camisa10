@@ -8,10 +8,38 @@ use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cupons = Coupon::latest()->get();
-        return view('admin.coupons', compact('cupons'));
+        $query = Coupon::query()->latest();
+
+        if ($search = $request->input('q')) {
+            $query->where('codigo', 'like', '%' . $search . '%');
+        }
+
+        if ($status = $request->input('ativo')) {
+            if ($status === '1') {
+                $query->where('ativo', true);
+            } elseif ($status === '0') {
+                $query->where('ativo', false);
+            }
+        }
+
+        if ($expiracao = $request->input('expirado')) {
+            if ($expiracao === 'sim') {
+                $query->whereNotNull('expira_em')->where('expira_em', '<', now());
+            } elseif ($expiracao === 'nao') {
+                $query->where(function ($q) {
+                    $q->whereNull('expira_em')->orWhere('expira_em', '>=', now());
+                });
+            }
+        }
+
+        $cupons = $query->paginate(20)->withQueryString();
+
+        return view('admin.coupons', [
+            'cupons' => $cupons,
+            'filtros' => $request->only(['q', 'ativo', 'expirado']),
+        ]);
     }
 
     public function store(Request $request)
@@ -42,6 +70,12 @@ class CouponController extends Controller
         ]);
         $cupom->update($data + ['ativo' => $request->boolean('ativo')]);
         return back()->with('success', 'Cupom atualizado.');
+    }
+
+    public function toggleAtivo(Coupon $cupom)
+    {
+        $cupom->update(['ativo' => !$cupom->ativo]);
+        return back()->with('success', 'Status do cupom atualizado.');
     }
 
     public function destroy(Coupon $cupom)

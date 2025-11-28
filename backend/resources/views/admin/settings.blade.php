@@ -2,34 +2,45 @@
 
 @section('title', 'Configurações')
 
+@section('content_header')
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="h4 mb-0">Configurações</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Configurações</li>
+        </ol>
+    </nav>
+</div>
+@endsection
+
 @section('content')
 <div class="card p-4">
     <h2 class="font-semibold mb-3">Configurações da loja</h2>
-    <form method="POST" action="{{ route('admin.settings.update') }}" class="space-y-3" data-loading>
+    <form method="POST" action="{{ route('admin.settings.update') }}" class="mb-3" data-loading>
         @csrf
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-                <label class="text-sm font-semibold">Nome da loja</label>
-                <input class="input" name="nome_loja" value="{{ $settings['nome_loja'] ?? '' }}">
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label class="form-label">Nome da loja</label>
+                <input class="form-control" name="nome_loja" value="{{ $settings['nome_loja'] ?? '' }}">
             </div>
-            <div>
-                <label class="text-sm font-semibold">E-mail de contato</label>
-                <input class="input" name="email_contato" value="{{ $settings['email_contato'] ?? '' }}">
+            <div class="col-sm-6">
+                <label class="form-label">E-mail de contato</label>
+                <input class="form-control" name="email_contato" value="{{ $settings['email_contato'] ?? '' }}">
             </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-                <label class="text-sm font-semibold">Cor primária</label>
-                <input class="input" name="cor_primaria" value="{{ $settings['cor_primaria'] ?? '' }}" placeholder="#06b6d4">
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label class="form-label">Cor primária</label>
+                <input class="form-control" name="cor_primaria" value="{{ $settings['cor_primaria'] ?? '' }}" placeholder="#06b6d4">
             </div>
-            <div>
-                <label class="text-sm font-semibold">Texto do rodapé</label>
-                <input class="input" name="footer_texto" value="{{ $settings['footer_texto'] ?? '' }}">
+            <div class="col-sm-6">
+                <label class="form-label">Texto do rodapé</label>
+                <input class="form-control" name="footer_texto" value="{{ $settings['footer_texto'] ?? '' }}">
             </div>
         </div>
         <button class="btn btn-primary">Salvar</button>
     </form>
 </div>
 
-<style>.input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[var(--cor-primaria)] focus:outline-none; } .btn { @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold transition cursor-pointer; } .btn-primary { @apply bg-[var(--cor-acento)] text-white hover:bg-[var(--cor-acento-escuro)]; }</style>
 @endsection

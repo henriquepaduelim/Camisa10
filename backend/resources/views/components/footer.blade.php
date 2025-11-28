@@ -27,6 +27,9 @@
         </div>
     </div>
     <div class="bg-[var(--cor-primaria-escura)] text-center text-xs text-slate-300 py-3">
-        © {{ date('Y') }} {{ config('app.name') }} - Todos os direitos reservados. • Desenvolvido por <strong>StatCat</strong>
+        © {{ date('Y') }} {{ config('app.name') }} - Todos os direitos reservados. • Desenvolvido por
+        <a href="https://stat-cat-app-landing.vercel.app/" target="_blank" rel="noopener" class="font-semibold text-white hover:underline">
+            StatCat
+        </a>
     </div>
 </footer>

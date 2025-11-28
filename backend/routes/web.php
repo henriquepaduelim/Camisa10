@@ -117,6 +117,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/produtos', [AdminProductController::class, 'store'])->name('admin.produtos.store');
         Route::get('/produtos/{produto}/editar', [AdminProductController::class, 'edit'])->name('admin.produtos.edit');
         Route::patch('/produtos/{produto}', [AdminProductController::class, 'update'])->name('admin.produtos.update');
+        Route::patch('/produtos/{produto}/status', [AdminProductController::class, 'toggleStatus'])->name('admin.produtos.status');
         Route::delete('/produtos/{produto}', [AdminProductController::class, 'destroy'])->name('admin.produtos.destroy');
 
         Route::get('/taxonomias', [AdminTaxonomyController::class, 'index'])->name('admin.taxonomias');
@@ -130,6 +131,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/cupons', [AdminCouponController::class, 'index'])->name('admin.cupons');
         Route::post('/cupons', [AdminCouponController::class, 'store'])->name('admin.cupons.store');
         Route::patch('/cupons/{cupom}', [AdminCouponController::class, 'update'])->name('admin.cupons.update');
+        Route::patch('/cupons/{cupom}/ativo', [AdminCouponController::class, 'toggleAtivo'])->name('admin.cupons.ativo');
         Route::delete('/cupons/{cupom}', [AdminCouponController::class, 'destroy'])->name('admin.cupons.destroy');
 
         Route::get('/pedidos', [AdminOrderController::class, 'index'])->name('admin.pedidos');

@@ -1,69 +1,94 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Admin - @yield('title', 'Dashboard')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-slate-50 text-slate-900 font-[Montserrat] antialiased">
-    <div class="min-h-screen flex flex-col">
-        <header class="bg-[var(--cor-primaria-escura)] text-white">
-            <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
-                <a href="/admin" class="font-bold text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-gauge-high"></i> Painel Admin
-                </a>
-                <nav class="flex gap-3 text-sm flex-wrap">
-                    <a href="/admin" class="hover:underline">Dashboard</a>
-                    <a href="/admin/produtos" class="hover:underline">Produtos</a>
-                    <a href="/admin/taxonomias" class="hover:underline">Taxonomias</a>
-                    <a href="/admin/cupons" class="hover:underline">Cupons</a>
-                    <a href="/admin/pedidos" class="hover:underline">Pedidos</a>
-                    <a href="/admin/configuracoes" class="hover:underline">Configurações</a>
-                </nav>
-                <form method="POST" action="/admin/logout" data-loading>
-                    @csrf
-                    <button data-loading-text="Saindo..." class="text-sm bg-white text-slate-900 px-3 py-1 rounded-full font-semibold">Sair</button>
-                </form>
-            </div>
-        </header>
+@extends('adminlte::page')
 
-        <main class="flex-1 max-w-6xl mx-auto px-4 py-6">
-            @yield('content')
-        </main>
-    </div>
+@section('title', 'Painel Admin')
 
-    <div id="toast-container" class="fixed top-3 right-3 space-y-2 z-40"></div>
+@section('content_header')
+    @hasSection('content_header')
+        @yield('content_header')
+    @else
+        <h1>@yield('title', 'Dashboard')</h1>
+    @endif
+@endsection
+
+@section('content')
+    <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;"></div>
+    @yield('content')
+@endsection
+
+@section('css')
+    @vite(['resources/css/app.css'])
+@endsection
+
+@section('js')
+    @vite(['resources/js/app.js'])
     <script>
+        // Toasts Bootstrap para mensagens flash.
         (function() {
             const container = document.getElementById('toast-container');
+            if (!container) return;
             const messages = [];
             @if(session('success'))
                 messages.push({ type: 'success', text: @json(session('success')) });
             @endif
             @if($errors->any())
-                messages.push({ type: 'error', text: @json($errors->all()) });
+                messages.push({ type: 'danger', text: @json($errors->all()) });
             @endif
             messages.flat().forEach(msg => {
-                const div = document.createElement('div');
-                div.className = 'toast ' + (msg.type === 'success' ? 'toast-success' : 'toast-error');
-                div.innerText = Array.isArray(msg.text) ? msg.text.join('\n') : msg.text;
-                container.appendChild(div);
-                setTimeout(() => div.classList.add('toast-hide'), 3000);
-                setTimeout(() => div.remove(), 3500);
+                const toastEl = document.createElement('div');
+                toastEl.className = `toast align-items-center text-bg-${msg.type} border-0`;
+                toastEl.role = 'alert';
+                toastEl.innerHTML = `<div class="d-flex">
+                    <div class="toast-body">${Array.isArray(msg.text) ? msg.text.join('<br>') : msg.text}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>`;
+                container.appendChild(toastEl);
+                const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+                toast.show();
             });
+        })();
 
-            document.querySelectorAll('form[data-loading]').forEach(form => {
-                form.addEventListener('submit', () => {
-                    const btn = form.querySelector('[data-loading-text]');
-                    if (btn) {
-                        btn.dataset.originalText = btn.innerHTML;
-                        btn.innerHTML = btn.dataset.loadingText || 'Enviando...';
-                        btn.disabled = true;
+        // Botões com data-loading: desabilita e troca texto ao enviar.
+        document.querySelectorAll('form[data-loading]').forEach(form => {
+            form.addEventListener('submit', () => {
+                const btn = form.querySelector('[data-loading-text]');
+                if (btn) {
+                    btn.dataset.originalText = btn.innerHTML;
+                    btn.innerHTML = btn.dataset.loadingText || 'Enviando...';
+                    btn.disabled = true;
+                }
+            });
+        });
+
+        // Auto-slug: mantém o slug sincronizado com o nome enquanto o usuário não edita manualmente.
+        (function() {
+            const slugify = (value) => value
+                .toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+
+            document.querySelectorAll('[data-slug-source]').forEach(source => {
+                const targetSelector = source.dataset.slugTarget;
+                if (!targetSelector) return;
+                const target = document.querySelector(targetSelector);
+                if (!target) return;
+                let lastAuto = slugify(source.value || '');
+
+                target.addEventListener('input', () => {
+                    if (target.value !== lastAuto) {
+                        lastAuto = null; // usuário tomou controle
                     }
+                });
+
+                source.addEventListener('input', () => {
+                    if (lastAuto !== null && target.value && target.value !== lastAuto) {
+                        return;
+                    }
+                    const next = slugify(source.value || '');
+                    target.value = next;
+                    lastAuto = next;
                 });
             });
         })();
     </script>
-</body>
-</html>
+@endsection

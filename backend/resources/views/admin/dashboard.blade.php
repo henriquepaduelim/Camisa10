@@ -3,50 +3,57 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="card p-4">
-        <div class="text-sm text-slate-500">Produtos</div>
-        <div class="text-2xl font-bold">{{ $stats['produtos'] }}</div>
-    </div>
-    <div class="card p-4">
-        <div class="text-sm text-slate-500">Pedidos</div>
-        <div class="text-2xl font-bold">{{ $stats['pedidos'] }}</div>
-    </div>
-    <div class="card p-4">
-        <div class="text-sm text-slate-500">Clientes</div>
-        <div class="text-2xl font-bold">{{ $stats['clientes'] }}</div>
-    </div>
-    <div class="card p-4">
-        <div class="text-sm text-slate-500">Cupons</div>
-        <div class="text-2xl font-bold">{{ $stats['cupons'] }}</div>
-    </div>
-    <div class="card p-4">
-        <div class="text-sm text-slate-500">Carrinhos</div>
-        <div class="text-2xl font-bold">{{ $stats['carrinhos'] }}</div>
-    </div>
+<div class="row">
+    @foreach([
+        ['label' => 'Produtos', 'value' => $stats['produtos'], 'icon' => 'fas fa-box'],
+        ['label' => 'Pedidos', 'value' => $stats['pedidos'], 'icon' => 'fas fa-shopping-cart'],
+        ['label' => 'Clientes', 'value' => $stats['clientes'], 'icon' => 'fas fa-user'],
+        ['label' => 'Cupons', 'value' => $stats['cupons'], 'icon' => 'fas fa-ticket-alt'],
+        ['label' => 'Carrinhos', 'value' => $stats['carrinhos'], 'icon' => 'fas fa-shopping-bag'],
+    ] as $card)
+        <div class="col-sm-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-muted small">{{ $card['label'] }}</div>
+                        <div class="h4 mb-0 fw-bold">{{ $card['value'] }}</div>
+                    </div>
+                    <i class="{{ $card['icon'] }} text-primary fs-3"></i>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </div>
 
-<div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
-    <div class="card p-4">
-        <h2 class="font-semibold mb-2">Pedidos recentes</h2>
-        <div class="space-y-2">
-            @foreach($pedidosRecentes as $pedido)
-                <div class="flex justify-between text-sm">
-                    <span>#{{ $pedido->id }} • {{ $pedido->user?->name ?? 'Guest' }}</span>
-                    <span class="font-semibold text-brand">{{ ucfirst($pedido->status) }}</span>
-                </div>
-            @endforeach
+<div class="row mt-3">
+    <div class="col-lg-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3 class="card-title">Pedidos recentes</h3>
+            </div>
+            <div class="card-body">
+                @foreach($pedidosRecentes as $pedido)
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>#{{ $pedido->id }} • {{ $pedido->user?->name ?? 'Guest' }}</span>
+                        <span class="badge bg-info text-dark text-capitalize">{{ $pedido->status }}</span>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
-    <div class="card p-4">
-        <h2 class="font-semibold mb-2">Produtos em destaque</h2>
-        <div class="space-y-2">
-            @foreach($produtosTop as $produto)
-                <div class="flex justify-between text-sm">
-                    <span>{{ $produto->nome }}</span>
-                    <span class="font-semibold">R$ {{ number_format($produto->preco, 2, ',', '.') }}</span>
-                </div>
-            @endforeach
+    <div class="col-lg-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3 class="card-title">Produtos em destaque</h3>
+            </div>
+            <div class="card-body">
+                @foreach($produtosTop as $produto)
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>{{ $produto->nome }}</span>
+                        <span class="fw-semibold">R$ {{ number_format($produto->preco, 2, ',', '.') }}</span>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>

@@ -9,10 +9,34 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pedidos = Order::with('user')->latest()->paginate(15);
-        return view('admin.orders', compact('pedidos'));
+        $query = Order::with('user', 'items', 'address')->latest();
+
+        if ($search = $request->input('q')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('id', $search)
+                    ->orWhereHas('user', function ($u) use ($search) {
+                        $u->where('name', 'like', '%' . $search . '%')
+                            ->orWhere('email', 'like', '%' . $search . '%');
+                    });
+            });
+        }
+
+        if ($status = $request->input('status')) {
+            $query->where('status', $status);
+        }
+
+        if ($date = $request->input('data')) {
+            $query->whereDate('created_at', $date);
+        }
+
+        $pedidos = $query->paginate(15)->withQueryString();
+
+        return view('admin.orders', [
+            'pedidos' => $pedidos,
+            'filtros' => $request->only(['q', 'status', 'data']),
+        ]);
     }
 
     public function updateStatus(Request $request, Order $pedido)
