@@ -11,15 +11,15 @@
     <video class="absolute inset-0 w-full h-full object-cover filter grayscale" autoplay muted loop playsinline>
         <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
     </video>
-    <div class="absolute inset-0 bg-gradient-to-br from-[rgba(0,0,0,0.75)] via-[rgba(0,0,0,0.55)] to-[rgba(0,0,0,0.7)]"></div>
+    <div class="absolute inset-0 bg-linear-to-br from-[rgba(0,0,0,0.75)] via-[rgba(0,0,0,0.55)] to-[rgba(0,0,0,0.7)]"></div>
     <div class="relative max-w-6xl mx-auto px-4 py-12 sm:py-16 flex flex-col sm:flex-row gap-8 items-center">
         <div class="flex-1 space-y-4">
             <p class="text-sm uppercase tracking-wide text-slate-100">Nova coleção</p>
             <h1 class="text-3xl sm:text-4xl font-bold leading-tight">Camisas oficiais e retrô, feitas para quem vive futebol 24/7.</h1>
             <p class="text-slate-100">Escolha seu clube ou seleção favorita, com entrega rápida e experiência otimizada para smartphones.</p>
             <div class="flex flex-col sm:flex-row gap-3">
-                <a href="/produtos" class="btn btn-primary font-semibold px-5 py-3 rounded-full">
-                    <i class="fa-solid fa-shirt"></i> Ver catálogo
+                <a href="/produtos" class="btn btn-primary font-semibold px-5 py-3 rounded-full inline-flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shirt"></i> Confira!
                 </a>
                 <a href="/checkout" class="btn btn-secondary inline-flex items-center justify-center gap-2 font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition border border-brand text-white">
                     <i class="fa-solid fa-bolt"></i> Comprar agora
@@ -32,7 +32,7 @@
         </div>
         <div class="flex-1 w-full">
             <div class="bg-white/10 border border-white/10 rounded-3xl p-4 shadow-lg backdrop-blur">
-                <img src="{{ $heroImage }}" alt="{{ $heroProduct->nome ?? 'Camisa destaque' }}" class="w-full rounded-2xl object-cover">
+                <img src="{{ $heroImage }}" alt="h-96" class="w-full rounded-2xl object-cover h-96">
             </div>
         </div>
     </div>

@@ -11,6 +11,7 @@ use App\Models\ProductImage;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\QueryException;
 
 class ProductController extends Controller
 {
@@ -85,8 +86,16 @@ class ProductController extends Controller
 
     public function destroy(Product $produto)
     {
-        $produto->delete();
-        return back()->with('success', 'Produto removido.');
+        try {
+            $produto->delete();
+            return back()->with('success', 'Produto removido.');
+        } catch (QueryException $e) {
+            // FK constraint (produtos vinculados a pedidos/carrinhos) gera erro 23503 no Postgres.
+            if ($e->getCode() === '23503') {
+                return back()->with('error', 'Não é possível remover: produto ligado a pedidos ou carrinhos.');
+            }
+            return back()->with('error', 'Erro ao remover produto.');
+        }
     }
 
     public function toggleStatus(Request $request, Product $produto)

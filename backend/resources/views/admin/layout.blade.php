@@ -30,6 +30,9 @@
             @if(session('success'))
                 messages.push({ type: 'success', text: @json(session('success')) });
             @endif
+            @if(session('error'))
+                messages.push({ type: 'danger', text: @json(session('error')) });
+            @endif
             @if($errors->any())
                 messages.push({ type: 'danger', text: @json($errors->all()) });
             @endif
