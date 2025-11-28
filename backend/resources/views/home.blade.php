@@ -3,6 +3,10 @@
 @section('title', 'Loja mobile de camisas')
 
 @section('content')
+@php
+    $heroProduct = $destaques->first() ?? $maisVendidos->first();
+    $heroImage = $heroProduct?->images->first()?->url ?? asset('images/placeholder-shirt.svg');
+@endphp
 <section class="relative overflow-hidden text-white">
     <video class="absolute inset-0 w-full h-full object-cover filter grayscale" autoplay muted loop playsinline>
         <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
@@ -28,7 +32,7 @@
         </div>
         <div class="flex-1 w-full">
             <div class="bg-white/10 border border-white/10 rounded-3xl p-4 shadow-lg backdrop-blur">
-                <img src="https://via.placeholder.com/900x900?text=Camisa+Futebol" alt="Camisa destaque" class="w-full rounded-2xl object-cover">
+                <img src="{{ $heroImage }}" alt="{{ $heroProduct->nome ?? 'Camisa destaque' }}" class="w-full rounded-2xl object-cover">
             </div>
         </div>
     </div>
