@@ -24,16 +24,6 @@ class DemoSeeder extends Seeder
 {
     public function run(): void
     {
-        $admin = User::updateOrCreate(
-            ['email' => 'admin@galloclassics.test'],
-            [
-                'name' => 'Admin Gallo Classics',
-                'telefone' => '(11) 90000-0000',
-                'role' => 'admin',
-                'password' => Hash::make('Admin123!'),
-            ]
-        );
-
         $cliente = User::updateOrCreate(
             ['email' => 'cliente@galloclassics.test'],
             [
