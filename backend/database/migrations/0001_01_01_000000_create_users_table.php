@@ -23,6 +23,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // START DEBUGGING CODE
+        // This code is temporary to diagnose why the users table is not empty before unique constraint is applied.
+        $usersCount = \Illuminate\Facades\DB::table('users')->count();
+        if ($usersCount > 0) {
+            \Illuminate\Support\Facades\Log::error('DEBUG_ERROR: Users table is NOT empty after creation but before unique constraint. Count: ' . $usersCount);
+            throw new \Exception('DEBUG_ERROR: Tabela "users" não está vazia após a criação na migração ' . (new \ReflectionClass($this))->getShortName() . '! Contagem: ' . $usersCount);
+        }
+        // END DEBUGGING CODE
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
