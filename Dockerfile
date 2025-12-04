@@ -19,6 +19,9 @@ COPY . /var/www/html
 # Define o diretório de trabalho para a raiz do projeto Laravel
 WORKDIR /var/www/html/backend
 
+# Remove hotfile do Vite (evita apontar para dev server em produção)
+RUN rm -f public/hot
+
 # Configura o Apache para apontar para a pasta public do Laravel
 ENV APACHE_DOCUMENT_ROOT /var/www/html/backend/public
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf \
