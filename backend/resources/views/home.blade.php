@@ -6,8 +6,8 @@
 @php
     $heroSlides = $heroItems ?? collect();
 @endphp
-<section class="relative overflow-hidden text-white bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-    <div class="absolute inset-0 bg-gradient-to-br from-[rgba(0,0,0,0.75)] via-[rgba(0,0,0,0.55)] to-[rgba(0,0,0,0.7)]"></div>
+<section class="relative overflow-hidden text-white bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div class="absolute inset-0 bg-linear-to-br from-[rgba(0,0,0,0.75)] via-[rgba(0,0,0,0.55)] to-[rgba(0,0,0,0.7)]"></div>
     <div class="relative max-w-6xl mx-auto px-4 py-12 sm:py-16 flex flex-col sm:flex-row gap-8 items-center">
         <div class="flex-1 space-y-4">
             <p class="text-sm uppercase tracking-wide text-slate-100">Nova coleção</p>
