@@ -42,5 +42,7 @@ RUN chmod -R 775 storage bootstrap/cache
 EXPOSE 80
 
 # Comando de inicialização: executa migrações e inicia o Apache
-CMD ["bash", "-c", "php artisan migrate --force && apache2-foreground"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
+CMD ["/entrypoint.sh"]
