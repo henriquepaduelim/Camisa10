@@ -6,10 +6,7 @@
 @php
     $heroSlides = $heroItems ?? collect();
 @endphp
-<section class="relative overflow-hidden text-white">
-    <video class="absolute inset-0 w-full h-full object-cover filter grayscale" autoplay muted loop playsinline>
-        <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
-    </video>
+<section class="relative overflow-hidden text-white bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div class="absolute inset-0 bg-gradient-to-br from-[rgba(0,0,0,0.75)] via-[rgba(0,0,0,0.55)] to-[rgba(0,0,0,0.7)]"></div>
     <div class="relative max-w-6xl mx-auto px-4 py-12 sm:py-16 flex flex-col sm:flex-row gap-8 items-center">
         <div class="flex-1 space-y-4">
